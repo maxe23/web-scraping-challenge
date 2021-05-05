@@ -23,4 +23,26 @@ def scrape():
     mars['news_paragraph'] = soup.find("div", class_ = "article_teaser_body").text
 
     url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html'
-    browser.visit(url)  
+    browser.visit(url) 
+
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+    image=soup.find('a', class_='showimg')['href']
+
+    mars['featured_image_url']= 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/'+ image
+
+    url ='https://space-facts.com/mars/'
+    mars_tables = pd.read_html(url)
+
+    df = mars_tables[0]
+
+    mars['mars_facts'] = df.to_html(index = False, header = False)
+    url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    browser.visit(url)
+
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+
+    mh_names = []
+
+    results = soup.find_all('div', class_='item')
