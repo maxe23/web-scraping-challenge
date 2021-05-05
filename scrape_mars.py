@@ -62,3 +62,25 @@ def scrape():
         title.append(title_url)
 
     mh_img_url = []
+
+    for link in title:
+        browser.visit(link)
+    
+        html = browser.html
+        soup = BeautifulSoup(html, 'html.parser')
+    
+        images = soup.find('img', class_='wide-image')['src']
+        img_link = 'https://astrogeology.usgs.gov/' + images
+    
+        mh_img_url.append(img_link)
+
+    hemi_dict = zip(mh_names, mh_img_url)
+    mars['hemisphere_dictionary'] = []
+
+    for title, img in hemi_dict:
+        mars_dict = {}
+        mars_dict['title'] = title
+        mars_dict['img_url'] = img
+        mars['hemisphere_dictionary'].append(mars_dict)
+
+    return mars
