@@ -46,3 +46,19 @@ def scrape():
     mh_names = []
 
     results = soup.find_all('div', class_='item')
+
+    for result in results:
+        hemisphere = result.find('h3')
+        mh_names.append(hemisphere.text)
+
+    html=browser.html
+    soup=BeautifulSoup(html, 'html.parser')
+
+    title = []
+
+    for result in results:
+        title_result = result.find('a')['href']
+        title_url = 'https://astrogeology.usgs.gov/' + title_result
+        title.append(title_url)
+
+    mh_img_url = []
