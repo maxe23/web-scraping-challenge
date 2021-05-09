@@ -75,12 +75,13 @@ def scrape():
         mh_img_url.append(img_link)
 
     hemi_dict = zip(mh_names, mh_img_url)
-    mars['hemisphere_dictionary'] = []
+    mars_list= []
 
     for title, img in hemi_dict:
         mars_dict = {}
         mars_dict['title'] = title
         mars_dict['img_url'] = img
-        mars['hemisphere_dictionary'].append(mars_dict)
-
+        mars_list.append(mars_dict)
+    
+    mars['hemisphere_dictionary'] = mars_list
     return mars

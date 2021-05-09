@@ -63,18 +63,18 @@
             <h2 class="heading">Mars Hemispheres</h2>
         </div>
         <div class="col-md-6">
-            {% for x in mars.hemisphere_dictionary [0:2] %}
+            {% for x in mars.hemisphere_dictionary %}
             <h4>{{x.title}}</h4>
             <img src="{{x.img_url}}">
             {% endfor %}
         </div>
-        <div class="col-md-6">
-            {% for x in mars.hemisphere_dictionary [2:4]%}
+<!--         <div class="col-md-6">
+            {% for x in mars.hemisphere_dictionary %}
             <h4>{{x.title}}</h4> 
             <img src="{{x.img_url}}">
             {% endfor %}
         </div>
-      </div>
+ -->      </div>
     </div>
   </div>
 </body>
